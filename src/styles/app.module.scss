@@ -1,0 +1,110 @@
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+
+    .header {
+
+        p {
+            color: black;
+            margin: 0;
+            font-size: 5rem;
+            -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: rgb(255, 255, 255);
+            font-weight: 900;
+            font-style: italic;
+            transform: scaleY(0.8);
+            
+            span {
+                -webkit-text-fill-color: rgb(255, 255, 255);
+                font-style: normal;
+
+            }
+        }
+
+        
+    }
+
+    .albumsList {
+        display: flex;
+        align-items: center;
+        height: 60vh;
+        width: 100vw;
+        overflow: auto;
+        white-space: nowrap;
+
+        .previousAlbum, .nextAlbum {
+            color: black;
+            margin: 0;
+            font-size: 7rem;
+            -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: rgb(255, 255, 255);
+            font-weight: 900;
+            transform: scaleY(0.8);
+        }
+
+        
+
+        .forMargin {
+            
+            margin: 9.2vw;
+        }
+
+        
+    }
+
+    .leftBlock, .rightBlock {
+        height: 52%;
+        width: 32%;
+        background-color: #020203;
+        position: absolute;
+        z-index: 2;
+        margin-top: 30px;
+    }
+
+    .leftBlock {
+        left: 0;
+    }
+
+    .rightBlock {
+        right: 0;
+    }
+
+    .detailsButton {
+        height: 80px;
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        border-radius: 50%;
+        border: 1px solid gray;
+        padding: 15px;
+        
+
+
+
+        button {
+            border: none;
+            background-color: transparent;
+            font-size: 1.2rem;
+            margin-top: 8px;
+        }
+
+        svg {
+            font-size: 1.2rem;
+        }
+    }
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
