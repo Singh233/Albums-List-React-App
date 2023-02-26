@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { fetchAlbums } from '../api';
 import styles from '../styles/app.module.scss'
 import AlbumCard from './AlbumCard';
@@ -8,11 +8,13 @@ import 'animate.css';
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import CustomCursor from './CustomCursor';
+import { MouseContext } from '../context/mouse-context';
 
 
 function App() {
   const myRef = useRef(null); // This is a hook
-
+  const { cursorType, cursorChangeHandler } = useContext(MouseContext); // This is a hook
 
 
   const {value, setValue} = useState(''); // This is a hook
@@ -37,10 +39,11 @@ function App() {
 
   return (
     <div className="App">
+      <CustomCursor />
       <Navbar />
 
       <div className={styles.mainContainer}>
-        <div className={`${styles.header} animate__animated animate__fadeIn`}>
+        <div  className={`${styles.header} animate__animated animate__fadeIn`}>
           <p> <span>SELECT</span> THE ALBUM</p>
         </div>
 
