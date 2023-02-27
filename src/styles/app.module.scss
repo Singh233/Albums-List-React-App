@@ -37,6 +37,7 @@
         width: 100vw;
         overflow: auto;
         white-space: nowrap;
+        // overflow-y: hidden;
 
         .previousAlbum, .nextAlbum {
             color: black;
@@ -65,7 +66,7 @@
         background-color: #020203;
         position: absolute;
         z-index: 2;
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .leftBlock {
@@ -96,6 +97,7 @@
             background-color: transparent;
             font-size: 1.2rem;
             margin-top: 8px;
+            cursor: none;
         }
 
         svg {
@@ -104,6 +106,12 @@
     }
 
 }
+
+.remove {
+    display: none !important;
+}
+
+
 
 ::-webkit-scrollbar {
     display: none;

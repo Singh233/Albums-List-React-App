@@ -8,6 +8,7 @@
     border-radius: 5px;
     margin: 0px 110px;
     margin-bottom: 0px;
+    margin-top: 90px;
 
 
     .albumCardImage {
@@ -30,7 +31,7 @@
         width: max-content;
 
         position: relative;
-        top: -40%;
+        top: -60%;
         z-index: 10;
         --animate-duration: 1.5s;
 
@@ -41,8 +42,41 @@
             margin: 0;
             transform: scaleY(0.8);
             text-transform: uppercase;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .id {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin: 5px;
+                font-size: 3rem;
+                background-color: rgba(0, 0, 0, 0.626);
+                height: 100px;
+                width: 90px;
+                border-radius: 50%;
+                border: 1px solid white;
+            }
+
+            .info {
+                font-size: 1.2rem;
+                background-color: none;
+                color: white;
+
+
+            }
+        }
+        .active {
+            -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: rgb(255, 255, 255);
         }
     }
+
+    
 }
 
 

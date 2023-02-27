@@ -10,39 +10,62 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import CustomCursor from './CustomCursor';
 import { MouseContext } from '../context/mouse-context';
+import AlbumList from './AlbumList';
 
 
 function App() {
-  const myRef = useRef(null); // This is a hook
   const { cursorType, cursorChangeHandler } = useContext(MouseContext); // This is a hook
 
+  // state for displaying albums on home page
+  const [ homeAlbums, setHomeAlbums ] = useState([]); 
 
-  const {value, setValue} = useState(''); // This is a hook
+  // state for displaying all albums
+  const [ allAlbums, setAllAlbums ] = useState([]);
+
+  const [ detailsClicked, setDetailsClicked ] = useState(false);
+
+  const [ removeView, setRemoveView ] = useState(false);
+
+  const [value, setValue] = useState(0); // This is a hook
 
   // componentDidMount equivalent
   useEffect(() => {
-    console.log('component did mount');
-
-    fetchAlbums().then((albums) => {
-      console.log(albums);
+    const data = async () => await fetchAlbums();
+    
+    data().then((res) => {
+      const arr = res.filter((album, index) => index % 10 == 0);
+      setHomeAlbums(arr);
+      setAllAlbums(res);
     });
 
-    return () => {
-      console.log('component will unmount');
-      // if (myRef && myRef.current) {
-      //   console.log('scrolling to ref')
-      //   myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // }
-    }
   }, []);
+
+  // See details clicked 
+
+  const handleClick = (e) => {
+        
+
+    setDetailsClicked(true);
+
+    setTimeout(() => {
+      setRemoveView(true);
+      
+    }, 250);
+
+  
+};
 
 
   return (
     <div className="App">
       <CustomCursor />
-      <Navbar />
+      <Navbar stateAsProp={detailsClicked} />
 
-      <div className={styles.mainContainer}>
+      <div className={` 
+          ${styles.mainContainer} 
+          ${detailsClicked ? 'animate__animated animate__fadeOutUpBig' : ''}
+          ${removeView ? styles.remove : ''}
+          `}>
         <div  className={`${styles.header} animate__animated animate__fadeIn`}>
           <p> <span>SELECT</span> THE ALBUM</p>
         </div>
@@ -56,9 +79,13 @@ function App() {
           {/* <p className={styles.previousAlbum}> Album Title</p> */}
 
           <div className={styles.forMargin}></div>
-          <AlbumCard />
-          <AlbumCard />
-          <AlbumCard scrollRef={myRef}/>
+          {/* for loop */
+            homeAlbums.map((album, index) => {
+              return (
+                <AlbumCard stateAsProp={{value, setValue}} key={index} index={index} album={album}/>
+              )
+            })
+          }
           <div className={styles.forMargin} ></div>
 
 
@@ -68,7 +95,10 @@ function App() {
           
         </div>
 
-        <div className={styles.detailsButton}>
+        <div
+          onMouseEnter={() => cursorChangeHandler('detailsHovered')}
+          onMouseLeave={() => cursorChangeHandler('')}
+          onClick={handleClick} className={styles.detailsButton}>
             <button>Details</button>
             <FontAwesomeIcon icon={faChevronDown} />
           </div>
@@ -77,7 +107,8 @@ function App() {
 
 
       </div>
-      
+
+      { detailsClicked && <AlbumList albums={allAlbums} index={value} stateAsProp={detailsClicked}/> }
 
     </div>
   )

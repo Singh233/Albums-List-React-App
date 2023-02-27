@@ -10,25 +10,26 @@ const CustomCursor = () => {
 
     useEffect(() => {
         let timeout = null;
-            if (cursorType === 'hovered') {
-                timeout = setTimeout(() => {
-                    document.getElementsByClassName('dot')[0].classList.remove('temp');
-                    document.getElementsByClassName('dot')[0].classList.add('temp');
-                }, 500);
-            } else { 
-                document.getElementsByClassName('dot')[0].classList.remove('shrink');
-                document.getElementsByClassName('dot')[0].classList.add('shrink');
-                document.getElementsByClassName('dot')[0].classList.remove('temp');
+        if (cursorType === 'hovered' || cursorType === 'detailsHovered') {
+            timeout = setTimeout(() => {
+                document
+                    .getElementsByClassName('dot')[0]
+                    .classList.remove('temp');
+                document.getElementsByClassName('dot')[0].classList.add('temp');
+            }, 500);
+        } else {
+            document
+                .getElementsByClassName('dot')[0]
+                .classList.remove('shrink');
+            document.getElementsByClassName('dot')[0].classList.add('shrink');
+            document.getElementsByClassName('dot')[0].classList.remove('temp');
+        }
 
-            }
-            
-        
         return () => {
             clearTimeout(timeout);
         };
     }, [cursorType]);
 
-    
     return (
         <>
             {/* <div
@@ -36,14 +37,14 @@ const CustomCursor = () => {
                 className={`ring ${cursorType}`}
             ></div> */}
             <div
-                className={`dot animate__animated  ${cursorType === 'hovered' ? 'hovered '  : ''}`}
+                className={`dot animate__animated  ${
+                    cursorType === 'hovered' || cursorType === 'detailsHovered' ? 'hovered ' : ''
+                }`}
                 style={{ left: `${x}px`, top: `${y}px` }}
-                
             >
                 <div className="dotInner">
-                    {cursorType === 'hovered' && <p>
-                        Next
-                        </p>}
+                    {cursorType === 'hovered' && <p>Next</p>}
+                    {cursorType === 'detailsHovered' && <p>Let's Go</p>}
                 </div>
             </div>
         </>

@@ -13,6 +13,9 @@ export default function Navbar() {
         <div className={styles.navbarContainer}>
             <div className={styles.navbarLogo}>
                 <img src={logo} alt="spotify logo" />
+            </div>
+
+            <div className={styles.navbarLinks}>
                 
             </div>
 
