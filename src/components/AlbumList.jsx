@@ -5,8 +5,8 @@ export default function AlbumList(props) {
     const { albums, index } = props;
 
     return (
-        <div className={`${styles.listContainer} animate__animated animate__fadeInUp
-            ${props.stateAsProp.detailsClicked ? 'animate__animated animate__fadeInUp' : ''}
+        <div className={`${styles.listContainer} 
+            ${props.stateAsProp.detailsClicked ? ' animate__animated animate__fadeInDownBig' :  'animate__animated animate__fadeInUp'}
         `}
         
         >

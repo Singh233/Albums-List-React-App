@@ -59,11 +59,11 @@ function App() {
   return (
     <div className="App">
       <CustomCursor />
-      <Navbar stateAsProp={detailsClicked} />
+      <Navbar detailsState={{detailsClicked, setDetailsClicked}} removeViewState={{removeView, setRemoveView}}/>
 
       <div className={` 
           ${styles.mainContainer} 
-          ${detailsClicked ? 'animate__animated animate__fadeOutUpBig' : ''}
+          ${detailsClicked ? 'animate__animated animate__fadeOutUpBig' : 'animate__animated '}
           ${removeView ? styles.remove : ''}
           `}>
         <div  className={`${styles.header} animate__animated animate__fadeIn`}>
