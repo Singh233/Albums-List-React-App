@@ -13,10 +13,20 @@ export default function Navbar(props) {
     const { detailsClicked, setDetailsClicked } = props.detailsState;
     const { removeView, setRemoveView } = props.removeViewState;
 
+    const { addAlbumCard, setAddAlbumCard } = props.addAlbumCardState;
+
     const handleClick = (e) => {
         setDetailsClicked(false);
         setRemoveView(false);
 
+    }
+
+    const addAlbumButtonClick = (e) => {
+        if (addAlbumCard) {
+            setAddAlbumCard(false);
+            return;
+        }
+        setAddAlbumCard(true);
     }
 
     return (
@@ -38,6 +48,11 @@ export default function Navbar(props) {
                 />
                 <p>Albums</p>
             </div>}
+
+
+            <div onClick={addAlbumButtonClick} className={styles.addAlbumButton}>
+                <p>Add Album</p>
+            </div>
             
 
             <div className={styles.navbarMenu}>

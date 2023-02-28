@@ -42,6 +42,32 @@
         }
     }
 
+
+    .addAlbumButton {
+        padding: 10px 20px;
+        border: 1px solid #efbf03;
+        border-radius: 15px;
+        color: #efbf03;
+
+        position: absolute;
+        right: 100px;
+        transition: all 0.3s ease-in-out;
+
+        p {
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 700;
+
+
+        }
+
+        &:hover {
+            background-color: #efbf03;
+            color: black;
+        }
+
+    }
+
     .navbarMenu {
         margin-right: 20px;
         font-size: 1.5rem;

@@ -11,6 +11,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import CustomCursor from './CustomCursor';
 import { MouseContext } from '../context/mouse-context';
 import AlbumList from './AlbumList';
+import AddAlbumCard from './AddAlbumCard';
 
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
 
   const [ removeView, setRemoveView ] = useState(false);
 
-  const [value, setValue] = useState(0); // This is a hook
+  const [value, setValue] = useState(0); 
+
+  // state for add album card
+  const [ addAlbumCard, setAddAlbumCard ] = useState(false);
 
   // componentDidMount equivalent
   useEffect(() => {
@@ -55,11 +59,20 @@ function App() {
   
 };
 
+// handle submit for add album card
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log('submitted');
+}
+
 
   return (
     <div className="App">
       <CustomCursor />
-      <Navbar detailsState={{detailsClicked, setDetailsClicked}} removeViewState={{removeView, setRemoveView}}/>
+      <Navbar detailsState={{detailsClicked, setDetailsClicked}} 
+        removeViewState={{removeView, setRemoveView}}
+        addAlbumCardState={{addAlbumCard, setAddAlbumCard}}
+        />
 
       <div className={` 
           ${styles.mainContainer} 
@@ -79,6 +92,7 @@ function App() {
           {/* <p className={styles.previousAlbum}> Album Title</p> */}
 
           <div className={styles.forMargin}></div>
+          { addAlbumCard && <AddAlbumCard albumsState={{allAlbums, setAllAlbums}} />}
           {/* for loop */
             homeAlbums.map((album, index) => {
               return (
@@ -98,8 +112,8 @@ function App() {
         <div
           onMouseEnter={() => cursorChangeHandler('detailsHovered')}
           onMouseLeave={() => cursorChangeHandler('')}
-          onClick={handleClick} className={styles.detailsButton}>
-            <button>Details</button>
+          onClick={addAlbumCard ? handleSubmit : handleClick} className={`${styles.detailsButton} ${addAlbumCard ? styles.hide : ''}`}>
+            <button>{addAlbumCard ? 'Submit' : 'Details' }</button>
             <FontAwesomeIcon icon={faChevronDown} />
           </div>
 
@@ -108,7 +122,13 @@ function App() {
 
       </div>
 
-      { detailsClicked && <AlbumList albums={allAlbums} index={value} stateAsProp={detailsClicked}/> }
+      { detailsClicked &&
+        allAlbums.map((album, index) => {
+          return (
+            <AlbumList key={index} album={album} albums={allAlbums} index={value} stateAsProp={detailsClicked}/>
+          )
+        })
+      }
 
     </div>
   )
