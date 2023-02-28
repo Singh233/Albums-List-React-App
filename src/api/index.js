@@ -25,3 +25,16 @@ export const postAlbums = async (album) => {
     return json;
 }
     
+
+// function to update data to the API
+export const updateAlbums = async (album) => {
+    const response = await fetch(`${URL}/${album.albumId}`, {
+        method: 'PUT',
+        body: JSON.stringify(album),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+    const json = await response.json();
+    return json;
+}

@@ -14,6 +14,43 @@
         margin: 10px;
         padding: 20px;
 
+        svg {
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+            margin-left: -150px;
+            transition: all 0.3s ease-in-out;
+            margin-top: 10px;
+
+            &:hover {
+                color: #efbf03;
+            }
+        }
+
+        input {
+            transform: scaleY(0.9);
+            margin: 0;
+
+            border: none;
+            background-color: #121212;
+            color: white;
+            font-size: 5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-left: 20px;
+
+            padding: 5px 10px;
+            margin-top: 12px;
+            border: 1px solid rgb(89, 89, 89);
+            border-radius: 20px;
+            outline: none;
+
+            &:focus {
+                outline: none;
+                border: 1px solid #efbf03;
+            }
+        }
+
         
 
         .title {
