@@ -122,13 +122,13 @@ const handleSubmit = (e) => {
 
       </div>
 
-      { detailsClicked &&
-        allAlbums.map((album, index) => {
-          return (
-            <AlbumList key={index} album={album} albums={allAlbums} albumsState={{allAlbums, setAllAlbums}} index={value} stateAsProp={detailsClicked}/>
-          )
-        })
-      }
+      
+        <AlbumList
+            albumsState={{ allAlbums, setAllAlbums }}
+            stateAsProp={{ detailsClicked, setDetailsClicked }}
+            value={value}
+        />
+            
 
     </div>
   )

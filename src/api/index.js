@@ -38,3 +38,13 @@ export const updateAlbums = async (album) => {
     const json = await response.json();
     return json;
 }
+
+
+// function to delete data from the API
+export const deleteAlbums = async (albumId) => {
+    const response = await fetch(`${URL}/${albumId}`, {
+        method: 'DELETE',
+    });
+    const json = await response.json();
+    return json;
+}
