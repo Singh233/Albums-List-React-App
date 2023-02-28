@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from '../styles/albumList.module.scss';
 // Font Awesome
@@ -16,7 +16,7 @@ export default function AlbumListCard(props) {
 
     const [ editClicked, setEditClicked ] = useState(false);
 
-    const [ deleteClicked, setDeleteClicked ] = useState(false);
+    const [ deleteClicked, setDeleteClicked ] = useState(''); // yes, no and remove for remove animation
 
 
     const [ albumTitle, setAlbumTitle ] = useState('');
@@ -47,12 +47,16 @@ export default function AlbumListCard(props) {
             
             console.log('delete---', allAlbums);
         }
-        setDeleteClicked(true);
+        setDeleteClicked('yes');
     }
 
     // handle submit click
     const handleSubmitClick = async (e) => {
 
+        if (albumTitle === '') {
+            setAlbumTitle(album.title);
+            return;
+        }
         const data = {
             userId: album.userId,
             albumId: album.id,
@@ -73,12 +77,23 @@ export default function AlbumListCard(props) {
         }
     }
 
-    if (deleteClicked) {
-        return (<div></div>);
-    }
+    useEffect(() => {
+        if (deleteClicked) {
+            setTimeout(() => {
+                console.log('first')
+                setDeleteClicked('remove');
+            }, 600);
+        }
+    }, [deleteClicked]);
+
+    // if (deleteClicked) {
+    //     return (<div></div>);
+    // }
 
     return (
-        <div key={album.id} className={styles.listCard}>
+        <div key={album.id} 
+            className={`${styles.listCard} 
+            ${deleteClicked === 'yes' ? 'animate__animated animate__fadeOutLeftBig ' : deleteClicked === 'remove' ? styles.remove : ''}`}>
                 { !editClicked && 
                 <p className={`${styles.title} ${!editClicked ? 'animate__animated animate__fadeIn' : ''}`}>
                     {title.substring(0, 17)}</p> 

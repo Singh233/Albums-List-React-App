@@ -3,26 +3,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 34vw;
     height: 45vh;
     border-radius: 5px;
-    margin: 0px 110px;
+    margin: 0px 120px;
     margin-bottom: 0px;
-    margin-left: 14%;
+    margin-left: 16%;
     border-radius: 30px;
+    position: relative;
+    z-index: 3;
+    
 
 
     border: 1px solid rgb(125, 125, 125);
 
     
     .header {
-        position: absolute;
-        z-index: 10;
+        position: relative;
+        z-index: 3;
         font-size: 7rem;
         text-transform: uppercase;
         font-weight: 800;
-        margin-top: -200px;
+        margin-top: -30px;
         color: #efbf03;
+        transform: scaleY(0.8);
+
     }
 
     .albumCardInfo {
@@ -31,10 +36,9 @@
         align-items: center;
         --animate-duration: 1.5s;
         padding: 20px;
-        margin-top: 150px;
 
         input {
-            width: 30vw;
+            width: 28vw;
             border: none;
             border-radius: 10px;
             margin: 10px 0;
@@ -51,12 +55,31 @@
             }
         }
 
-        p {
-            text-transform: uppercase;
-            padding: 10px;
-            background-color: #121212;
+        button {
+            position: absolute;
+            bottom: 20px;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
             border-radius: 10px;
-            font-weight: 600;
+            border: 1px solid gray;
+            padding: 15px 20px;
+            text-transform: uppercase;
+
+            background-color: transparent;
+            font-size: 1.2rem;
+            margin-top: 8px;
+            cursor: none;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #efbf03;
+                color: black;
+                border: 1px solid #efbf03;
+            }
             
 
         }
@@ -68,6 +91,10 @@
     }
 
     
+}
+
+.remove {
+    display: none !important;
 }
 
 

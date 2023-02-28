@@ -49,10 +49,12 @@ export default function Navbar(props) {
                 <p>Albums</p>
             </div>}
 
-
+            { !detailsClicked && 
             <div onClick={addAlbumButtonClick} className={styles.addAlbumButton}>
                 <p>Add Album</p>
             </div>
+            }
+            
             
 
             <div className={styles.navbarMenu}>

@@ -92,11 +92,18 @@ const handleSubmit = (e) => {
           {/* <p className={styles.previousAlbum}> Album Title</p> */}
 
           <div className={styles.forMargin}></div>
-          { addAlbumCard && <AddAlbumCard albumsState={{allAlbums, setAllAlbums}} />}
+          
+          <AddAlbumCard albumsState={{allAlbums, setAllAlbums}} addAlbumCardState={{addAlbumCard, setAddAlbumCard}}/>
           {/* for loop */
             homeAlbums.map((album, index) => {
               return (
-                <AlbumCard stateAsProp={{value, setValue}} key={index} index={index} album={album}/>
+                <AlbumCard 
+                  stateAsProp={{value, setValue}} 
+                  key={index} 
+                  index={index} 
+                  album={album} 
+                  addAlbumCardState={{addAlbumCard, setAddAlbumCard}}
+                  />
               )
             })
           }
@@ -112,7 +119,8 @@ const handleSubmit = (e) => {
         <div
           onMouseEnter={() => cursorChangeHandler('detailsHovered')}
           onMouseLeave={() => cursorChangeHandler('')}
-          onClick={addAlbumCard ? handleSubmit : handleClick} className={`${styles.detailsButton} ${addAlbumCard ? styles.hide : ''}`}>
+          onClick={addAlbumCard ? handleSubmit : handleClick} 
+          className={`${styles.detailsButton} ${addAlbumCard ? styles.hide : ''}`}>
             <button>{addAlbumCard ? 'Submit' : 'Details' }</button>
             <FontAwesomeIcon icon={faChevronDown} />
           </div>
