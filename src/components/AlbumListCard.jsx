@@ -124,6 +124,7 @@ export default function AlbumListCard(props) {
                 }
                 {editClicked && (
                     <>
+                    <div className={styles.editInput}>
                     <input
                         required
                         type="text"
@@ -133,7 +134,7 @@ export default function AlbumListCard(props) {
                         className='animate__animated animate__fadeIn'
                     />
                     <FontAwesomeIcon icon={faSquareCheck} onClick={handleSubmitClick} />
-
+                    </div>
                     </>
                     
                 )}

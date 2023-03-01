@@ -92,3 +92,59 @@
     to {
     }
 }
+
+
+
+
+
+
+// media query for mobile
+@media screen and (max-width: 425px) {
+    .albumCard {
+        width: auto;
+        height: 35%;
+        border-radius: 5px;
+        margin: 0px 10px;
+        margin-bottom: 0px;
+        margin-top: 90px;
+    
+    
+        .albumCardImage {
+    
+            img {
+                width: 50vw;
+                height: 30vh;
+                min-width: 0px;
+                min-height: 0px;
+                object-fit: cover;
+            }
+        }
+    
+        .albumCardInfo {
+    
+            .albumCardTitle {
+                font-size: 2.6rem;
+
+    
+                .id {
+
+                    font-size: 2rem;
+
+                    height: 60px;
+                    width: 50px;
+                    
+                }
+    
+                .info {
+                    font-size: 1.2rem;
+                    background-color: none;
+                    color: white;
+    
+    
+                }
+            }
+        }
+    
+        
+    }
+}

@@ -106,3 +106,67 @@
     to {
     }
 }
+
+
+
+
+
+
+
+
+// media query for mobile
+@media screen and (max-width: 425px) {
+
+    .container {
+
+        width: 50vw;
+        height: auto;
+
+        margin: 0px 20px;
+        margin-left: 20%;
+        margin-top: 80px;
+        padding: 10px;
+        
+    
+    
+        border: 1px solid rgb(125, 125, 125);
+    
+        
+        .header {
+            display: none;
+    
+        }
+    
+        .albumCardInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            --animate-duration: 1.5s;
+            padding: 20px;
+            margin-bottom: 70px;
+    
+            input {
+                width: 38vw;
+                
+    
+                &:focus {
+                    border: 1px solid #efbf03;
+                }
+            }
+    
+            button {
+                font-size: 1rem;
+            }
+            .active {
+                -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: rgb(255, 255, 255);
+            }
+        }
+    
+        
+    }
+    
+
+}

@@ -18,44 +18,50 @@
             display: none !important;
         }
 
-        svg {
-            position: relative;
-            z-index: 1;
-            font-size: 3rem;
-            margin-left: -150px;
-            transition: all 0.3s ease-in-out;
-            margin-top: 10px;
-
-            &:hover {
-                color: #efbf03;
+        .editInput {
+            display: flex;
+            align-items: center;
+            svg {
+                position: relative;
+                z-index: 1;
+                font-size: 3rem;
+                margin-left: -70px;
+                transition: all 0.3s ease-in-out;
+                margin-top: 10px;
+    
+                &:hover {
+                    color: #efbf03;
+                }
             }
-        }
-
-        input {
-            transform: scaleY(0.9);
-            margin: 0;
-
-            border: none;
-            background-color: transparent;
-            color: white;
-            font-size: 5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-left: 20px;
-            -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
-            -webkit-text-stroke-width: 1px;
-            -webkit-text-stroke-color: rgb(255, 255, 255);
-            padding: 5px 10px;
-            margin-top: 12px;
-            border: 1px solid rgb(89, 89, 89);
-            border-radius: 20px;
-            outline: none;
-
-            &:focus {
+    
+            input {
+                transform: scaleY(0.9);
+                margin: 0;
+    
+                border: none;
+                background-color: transparent;
+                color: white;
+                font-size: 5rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                margin-left: 20px;
+                -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: rgb(255, 255, 255);
+                padding: 5px 10px;
+                margin-top: 12px;
+                border: 1px solid rgb(89, 89, 89);
+                border-radius: 20px;
                 outline: none;
-                border: 1px solid #efbf03;
+    
+                &:focus {
+                    outline: none;
+                    border: 1px solid #efbf03;
+                }
             }
         }
+
+        
 
         
 
@@ -95,7 +101,7 @@
             }
         }
 
-        &:hover .title {
+        &:hover .title, &:active .title {
             -webkit-text-fill-color: rgb(0, 0, 0); /* Will override color (regardless of order) */
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: rgb(255, 255, 255);
@@ -114,4 +120,87 @@
 
 .remove {
     display: none !important;
+}
+
+
+
+
+
+
+
+
+// media query for mobile
+@media screen and (max-width: 425px) {
+
+
+
+    .listContainer {
+ 
+
+        .listCard {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .editInput {
+                
+                svg {
+                    position: relative;
+                    z-index: 1;
+                    font-size: 2.3rem;
+                    margin-left: 0px;
+                    transition: all 0.3s ease-in-out;
+                    margin-top: 10px;
+    
+                    &:hover {
+                        color: #efbf03;
+                    }
+                }
+    
+                input {
+                    font-size: 2rem;
+    
+                    margin-left: 0px;
+                    margin: 5px;
+    
+                    padding: 5px 10px;
+                    margin-top: 12px;
+                    border-radius: 10px;
+                    outline: none;
+                    width: 80%;
+    
+                    &:focus {
+                        outline: none;
+                        border: 1px solid #efbf03;
+                    }
+                }
+            }
+            
+
+            
+
+            .title {
+                font-size: 2rem;
+                margin-left: 0px;
+            }
+
+            .options {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                justify-content: center;
+                justify-items: center;
+                align-items: center;
+                
+                margin: 0px;
+                p {
+                    font-size: 1.1rem;
+
+                }
+            }
+
+
+
+        }
+    }
+
 }
