@@ -35,7 +35,7 @@
         align-items: center;
         height: 60vh;
         width: 100vw;
-        overflow: auto;
+        overflow: hidden;
         white-space: nowrap;
         // overflow-y: hidden;
 
@@ -63,7 +63,7 @@
     .leftBlock, .rightBlock {
         height: 52%;
         width: 32%;
-        background-color: #020203;
+        background-color: black;
         position: absolute;
         z-index: 2;
         margin-top: 20px;
@@ -130,7 +130,7 @@
 @media screen and (max-width: 425px) {
     
 .mainContainer {
-    height: 80vh;
+    height: 60vh;
     
 
     .header {
@@ -145,9 +145,7 @@
         align-items: center;
         height: 40vh;
         width: 100vw;
-        overflow: auto;
-        white-space: nowrap;
-        // overflow-y: hidden;
+
 
         .previousAlbum, .nextAlbum {
             color: black;
