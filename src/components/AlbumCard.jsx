@@ -8,21 +8,22 @@ const AlbumCard = (props) => {
     const { value, setValue } = props.stateAsProp;
     const { album, index } = props;
     const { addAlbumCard, setAddAlbumCard } = props.addAlbumCardState;
+
     // get ref of the element to scroll to
     const handleClick = (e) => {
         
         if (e.target) {
+            setTimeout(() => {
+                setValue(index);
+            }, 300);
+
             if (addAlbumCard) {
                 setAddAlbumCard(false);
                 return;
             }
             
 
-            setTimeout(() => {
-                setValue(index);
-                
-
-            }, 300);
+            
             // setDetailsClicked(true);
             // e.target.clasList.add('animate__animated animate__faster animate__fadeInRight');
             e.target.scrollIntoView({
@@ -49,6 +50,7 @@ const AlbumCard = (props) => {
                 albumCardImage.classList.remove('animate__fadeInRight');
 
                 albumCardImage.classList.add('animate__slideInRight');
+
             
         } else {
             albumCardInfo.classList.remove('animate__fadeInRight');
@@ -62,6 +64,7 @@ const AlbumCard = (props) => {
             albumCardImage.classList.remove('animate__slideInRight');
 
             albumCardImage.classList.add('animate__slideInLeft');
+
         }
     }, [addAlbumCard]);
 

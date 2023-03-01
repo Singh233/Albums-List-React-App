@@ -8,6 +8,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import { deleteAlbums, updateAlbums } from '../api';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function AlbumListCard(props) {
@@ -31,13 +32,23 @@ export default function AlbumListCard(props) {
     // handle edit clicked
     const handleEditClick = (e) => {
         console.log('edit clicked');
+        if (!editClicked) {
+            toast('Change album title!');
+        }
         setEditClicked(!editClicked);
+        
     }
     // handle delete clicked
-    const handleDeleteClick = (e) => {
+    const handleDeleteClick = async (e) => {
         console.log('delete clicked');
+        
+        const response =  deleteAlbums(album.id);
 
-        const response = deleteAlbums(album.id);
+        await toast.promise(response, {
+            loading: 'Deleting album...',
+            success: 'Album deleted successfully',
+            error: 'Error when deleting!',
+        });
         if (response) {
             let arr = [...allAlbums];
             let item = arr.find(item => item.id === album.id);
@@ -52,21 +63,34 @@ export default function AlbumListCard(props) {
 
     // handle submit click
     const handleSubmitClick = async (e) => {
-
-        if (albumTitle === '') {
-            setAlbumTitle(album.title);
-            return;
-        }
         const data = {
             userId: album.userId,
             albumId: album.id,
             albumTitle: albumTitle
         }
+        if (albumTitle === '') {
+            await toast.promise(updateAlbums(data), {
+                loading: 'Updating album...',
+                success: 'No changes made!',
+                error: 'Error when updating!',
+            });
+            setAlbumTitle(album.title);
+            setEditClicked(!editClicked);
+
+            return;
+        }
+        
+        const response = updateAlbums(data);
+
+        await toast.promise(response, {
+            loading: 'Updating album...',
+            success: 'Album updated successfully',
+            error: 'Error when updating!',
+        });
+        
         setEditClicked(!editClicked);
         setTitle(albumTitle);
         console.log(title);
-
-        const response = await updateAlbums(data);
         if (response) {
             let arr = [...allAlbums];
             let item = arr.find(item => item.id === response.id);

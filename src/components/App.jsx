@@ -5,6 +5,10 @@ import AlbumCard from './AlbumCard';
 import Navbar from './Navbar';
 import 'animate.css';
 
+// Toast
+import toast from 'react-hot-toast';
+
+
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -16,6 +20,8 @@ import AddAlbumCard from './AddAlbumCard';
 
 function App() {
   const { cursorType, cursorChangeHandler } = useContext(MouseContext); // This is a hook
+
+  const myRef = useRef(null);
 
   // state for displaying albums on home page
   const [ homeAlbums, setHomeAlbums ] = useState([]); 
@@ -31,16 +37,27 @@ function App() {
 
   // state for add album card
   const [ addAlbumCard, setAddAlbumCard ] = useState(false);
-
   // componentDidMount equivalent
   useEffect(() => {
     const data = async () => await fetchAlbums();
+
+    
     
     data().then((res) => {
       const arr = res.filter((album, index) => index % 10 == 0);
       setHomeAlbums(arr);
       setAllAlbums(res);
     });
+
+    return () => {
+      // cleanup
+      toast.promise(fetchAlbums(), {
+        loading: 'Loading',
+        success: 'Albums fetched successfully',
+        error: 'Error when fetching',
+      });
+    }
+
 
   }, []);
 
@@ -69,7 +86,9 @@ const handleSubmit = (e) => {
   return (
     <div className="App">
       <CustomCursor />
-      <Navbar detailsState={{detailsClicked, setDetailsClicked}} 
+      <Navbar 
+        detailsState={{detailsClicked, setDetailsClicked}} 
+        passRef={myRef}
         removeViewState={{removeView, setRemoveView}}
         addAlbumCardState={{addAlbumCard, setAddAlbumCard}}
         />
@@ -93,7 +112,7 @@ const handleSubmit = (e) => {
 
           <div className={styles.forMargin}></div>
           
-          <AddAlbumCard albumsState={{allAlbums, setAllAlbums}} addAlbumCardState={{addAlbumCard, setAddAlbumCard}}/>
+          <AddAlbumCard passRef={myRef} albumsState={{allAlbums, setAllAlbums}} addAlbumCardState={{addAlbumCard, setAddAlbumCard}}/>
           {/* for loop */
             homeAlbums.map((album, index) => {
               return (
@@ -103,6 +122,7 @@ const handleSubmit = (e) => {
                   index={index} 
                   album={album} 
                   addAlbumCardState={{addAlbumCard, setAddAlbumCard}}
+
                   />
               )
             })

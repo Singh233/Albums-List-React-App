@@ -5,6 +5,8 @@ import styles from '../styles/addAlbumCard.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { postAlbums } from '../api';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export default function AddAlbumCard(props) {
     const { cursorType, cursorChangeHandler } = useContext(MouseContext); // This is a hook
@@ -21,12 +23,27 @@ export default function AddAlbumCard(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (albumId === '' || albumTitle === '') {
+            toast.error('Please fill in all fields!');
+            return;
+        }
+
         const data = {
             albumId: albumId,
             albumTitle: albumTitle
         }
-        setAddAlbumCard(false);
+
+    
+        toast.promise(postAlbums(data), {
+            loading: 'Adding album...',
+            success: 'Album added successfully',
+            error: 'Error while adding!',
+        });
         const response = await postAlbums(data);
+
+        setAddAlbumCard(false);
+
+
         if (response) {
             let arr = [...allAlbums];
             const albumData = {
@@ -38,7 +55,6 @@ export default function AddAlbumCard(props) {
             setAllAlbums(arr);
             setAlbumId('');
             setAlbumTitle('');
-            
 
         }
 
@@ -65,11 +81,13 @@ export default function AddAlbumCard(props) {
             div.classList.remove('animate__fadeInLeftBig');
             div.classList.add('animate__fadeInLeftBig');
             div.classList.remove(`${styles.remove}`);
+
+            div.scrollIntoView({ behavior: 'smooth', inline: 'center' });
         }
     }, [addAlbumCard]);
 
     return (
-        <div className={`${styles.container} animate__animated ${styles.remove}`}>
+        <div ref={props.passRef} className={`${styles.container} animate__animated ${styles.remove}`}>
 
 
             {/* <FontAwesomeIcon className={styles.cancelButton} icon={faXmark} /> */}

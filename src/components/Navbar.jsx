@@ -6,6 +6,7 @@ import logo from '../assets/img/marshlogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { MouseContext } from '../context/mouse-context';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Navbar(props) {
     const { cursorType, cursorChangeHandler } = useContext(MouseContext); // This is a hook
@@ -27,6 +28,14 @@ export default function Navbar(props) {
             return;
         }
         setAddAlbumCard(true);
+        const myRef = props.passRef;
+        myRef.current.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center',
+        });
+        console.log(myRef.current);
+
+        toast('Add an album to your collection!');
     }
 
     return (
